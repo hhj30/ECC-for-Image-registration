@@ -44,12 +44,14 @@ elseif strcmp(transform,'affine')
     delta_p = reshape(delta_p, 2, 3);
     delta_p(1,1) = delta_p(1,1)+1;
     delta_p(2,2) = delta_p(2,2)+1;
-    
+    warp(1,1)=warp(1,1)+1;
+    warp(2,2)=warp(2,2)+1;
     idelta = [delta_p; 0 0 1];	
     
     new_warp = idelta\[warp(1:2,:); 0 0 1];
     new_warp = new_warp(1:2,:);
-    
+    new_warp(1,1)=new_warp(1,1)-1;
+    new_warp(2,2)=new_warp(2,2)-1;
 elseif strcmp(transform,'translation')
     new_warp = warp - delta_p;
     
