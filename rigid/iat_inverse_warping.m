@@ -73,6 +73,10 @@ xy=[xx(:)';yy(:)';ones(1,length(yy(:)))];
 
 %3x3 matrix transformation
 A = warp;
+if strcmp(transform,'affine')
+A(1,1)=A(1,1)+1;
+A(2,2)=A(2,2)+1;
+end
 if strcmp(transform,'homography')
     A = A./A(3,3);
 end
